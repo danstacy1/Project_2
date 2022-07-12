@@ -6,7 +6,7 @@ require('dotenv').config()
 const express = require('express')
 const morgan = require('morgan')
 const methodOverride = require('method-override')
-const playerRoutes = require('./controller/fruit_routes')
+const playerRoutes = require('./controller/players_routes')
 const userRoutes = require('./controller/user_routes')
 const commentRoutes = require('./controller/comment_routes')
 
@@ -44,14 +44,14 @@ app.use(
 ////////////////////////////////////////////
 // Routes
 ////////////////////////////////////////////
-app.use('/fruits', fruitRoutes)
+app.use('/players', playerRoutes)
 app.use('/users', userRoutes)
 app.use('/comments', commentRoutes)
 
 // localhost:3000/
 app.get('/', (req, res) => {
 	// res.send('your server is running, better go catch it')
-	res.redirect('/fruits')
+	res.redirect('/draft')
 })
 
 ////////////////////////////////////////////
