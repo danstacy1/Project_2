@@ -1,6 +1,22 @@
 # Project_2
 I am creating a fantasy football drafting app. 
 
+API: ESPN Fantasy Football API.
+npm install --save espn-fantasy-football-api
+
+NPM PACKAGES:
+"bcryptjs": "^2.4.3",
+"connect": "^3.7.0",
+"dotenv": "^16.0.1",
+"espn-fantasy-football-api": "^0.16.1",
+"express": "^4.18.1",
+"liquid-express-views": "^1.0.8",
+"lodash": "^4.17.21",
+"method-override": "^3.0.0",
+"mongo": "^0.1.0",
+"mongoose": "^6.4.4",
+"morgan": "^1.10.0"
+
 User Stories
 As a user, I want to.....
  - draft NFL players to create a fantasy football team.
@@ -9,6 +25,7 @@ As a user, I want to.....
     - add drafted player to My Team
     - have a starting line up of QB, RB, RB, WR, WR, WR, Flex, DST, K.
     - have five bench spots.
+    - Have a team name
 
  - view avialable NFL players in draft pool by ranking
     - query all players avaiable - find()?
@@ -18,7 +35,8 @@ As a user, I want to.....
     - query for a single fruit - by id? Search bar and click on name.
     - return single correct fruit
     - show player facts, stats, picture, schedule
-    - leave a comment
+    - leave a player comment/note
+    - edit/delete a player comment/note
 
 - update a single player
     - query for a single player - by id?
@@ -39,6 +57,7 @@ STRETCH GOALS
 - Have positon limits for each position
 - Draft against computer players
 - Have a dollar value for each player auction style
+- Have a draft clock
 
 
 Schema (model)
