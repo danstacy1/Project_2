@@ -1,0 +1,31 @@
+{
+  "name": "project_2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danstacy1/Project_2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danstacy1/Project_2/issues"
+  },
+  "homepage": "https://github.com/danstacy1/Project_2#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.1",
+    "espn-fantasy-football-api": "^0.16.1",
+    "express": "^4.18.1",
+    "liquid-express-views": "^1.0.8",
+    "lodash": "^4.17.21",
+    "method-override": "^3.0.0",
+    "mongoose": "^6.4.4",
+    "morgan": "^1.10.0"
+  }
+}
