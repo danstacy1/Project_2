@@ -63,6 +63,12 @@ STRETCH GOALS
 Schema (model)
 - Players
  - name: string
+ - positon: string
  - team: string
- - age: string
- - readyToEat: boolean
+ - age: number
+
+- Comments
+ - note: string
+ - author: 
+        - type: mongoose.Schema.Types.ObjectId,// this will be a single User
+        - ref: 'User'// this is the string value from the model creation
