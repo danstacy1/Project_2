@@ -2,15 +2,15 @@ const express = require('express')
 // making a router
 const router = express.Router()
 // importing fruit model to access database
-const Fruit = require('../models/fruit')
+const Player = require('../models/player')
 
 // DELETE - Delete
 router.delete('/:id', (req, res) => {
-    const fruitId = req.params.id
+    const playerId = req.params.id
 
-    Fruit.findByIdAndRemove(fruitId)
-        .then(fruit => {
-            res.redirect('/fruits')
+    Player.findByIdAndRemove(playerId)
+        .then(player => {
+            res.redirect('/players')
         })
         .catch(err => {
             res.json(err)
@@ -19,11 +19,11 @@ router.delete('/:id', (req, res) => {
 
 // GET route for displaying an update form
 router.get('/:id/edit', (req, res) => {
-    const fruitId = req.params.id
+    const playerId = req.params.id
 
-    Fruit.findById(fruitId)
-        .then(fruit => {
-            res.render('fruits/edit', { fruit })
+    Player.findById(playerId)
+        .then(player => {
+            res.render('players/edit', { player })
         })
         .catch(err => {
             res.json(err)
@@ -32,13 +32,13 @@ router.get('/:id/edit', (req, res) => {
 
 // PUT - Update
 router.put('/:id', (req, res) => {
-    const fruitId = req.params.id
+    const playerId = req.params.id
 
     req.body.readyToEat = req.body.readyToEat === 'on' ? true : false
 
-    Fruit.findByIdAndUpdate(fruitId, req.body, { new: true })
-        .then(fruit => {
-            res.redirect(`/fruits/${fruit._id}`)
+    Player.findByIdAndUpdate(playerId, req.body, { new: true })
+        .then(player => {
+            res.redirect(`/players/${player._id}`)
         })
         .catch(err => {
             res.json(err)
@@ -48,7 +48,7 @@ router.put('/:id', (req, res) => {
 
 // GET route for displaying my form for create
 router.get('/new', (req, res) => {
-    res.render('fruits/new')
+    res.render('players/new')
 })
 
 // POST - Create
@@ -60,10 +60,10 @@ router.post('/', (req, res) => {
     // using the ._id to set the owner field
     req.body.owner = req.session.userId
 
-    Fruit.create(req.body)
-        .then(fruits => {
+    Player.create(req.body)
+        .then(players => {
             // console.log(fruit)
-            res.redirect('/fruits')
+            res.redirect('/players')
         })
         .catch(err => {
             res.json(err)
@@ -74,11 +74,11 @@ router.post('/', (req, res) => {
 // localhost:3000/fruits
 router.get('/', (req, res) => {
     // use mongoose to find all fruits
-    Fruit.find({})
+    Player.find({})
     // return fruits as JSON
-        .then(fruits => {
+        .then(players => {
             // res.json(fruit)
-            res.render('fruits/index', { fruits })
+            res.render('players/index', { players })
         })
         .catch(err => {
             res.json(err)
@@ -87,9 +87,9 @@ router.get('/', (req, res) => {
 
 router.get('/mine', (req, res) => {
     // find the fruits associated with the logged in user
-    Fruit.find({ owner: req.session.userId })
-        .then(fruits => {
-            res.render('fruits/index', { fruits })
+    Player.find({ owner: req.session.userId })
+        .then(players => {
+            res.render('players/index', { players })
         })
         .catch(error => {
             console.log(error)
@@ -102,19 +102,13 @@ router.get('/mine', (req, res) => {
 // localhost:3000/fruits/seed/
 router.get('/seed', (req,res) => {
     // starting data
-    const startFruits = [
-    { name: "Orange", color: "orange", readyToEat: false },
-    { name: "Grape", color: "purple", readyToEat: false },
-    { name: "Banana", color: "orange", readyToEat: false },
-    { name: "Strawberry", color: "red", readyToEat: false },
-    { name: "Coconut", color: "brown", readyToEat: false },
- ]
+    
 
     // delete if we have fruits
- Fruit.deleteMany({})
+ Player.deleteMany({})
     // insert data
     .then(() => {
-        Fruit.create(startFruits)
+        Player.create(startPlayers)
         // return this daata as JSON to view
         .then(data => {
             res.json(data)
@@ -128,20 +122,20 @@ router.get('/seed', (req,res) => {
 // GET - Show
 // localhost:3000/fruits/:id <- change with the id being passed in
 router.get('/:id', (req, res) => {
-    const fruitId = req.params.id
+    const playerId = req.params.id
 
-    Fruit.findById(fruitId)
+    Player.findById(playerId)
         // This will populate our User model fields
         // comment has an author field and that is the ref to the User model
         // always going to be a string of the value you want to populate
         // this also has to be another model
         .populate('comments.author')
         // send back some json
-        .then(fruit => {
+        .then(player => {
             // res.json(fruit)show route.
             const userId = req.session.userId
             const username = req.session.username
-            res.render('fruits/show', { fruit, userId, username })
+            res.render('players/show', { player, userId, username })
         })
         .catch(err => {
             res.json(err)

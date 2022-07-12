@@ -1,11 +1,11 @@
 // If you want to use mongoose, you have to require it.
 const mongoose = require('mongoose')
 // The '..' leaves your prior file and the you connect to the new file.
-const Fruit = require('../models/fruit.js')
+const Player = require('../models/plaayer.js')
 
 // mongoose-crud is my database
 // we declared here that this will be the database that we will use. 
-const URI = 'mongodb://127.0.01/fruit-crud'
+const URI = 'mongodb://127.0.01/player-crud'
 
 // Have to pass in these option for deprecation warnnings and errors.
 mongoose.connect(URI, {
@@ -16,7 +16,7 @@ mongoose.connect(URI, {
 const db = mongoose.connection
 
 db.once('open', function () {
-    Fruit.find({})
+    Player.find({})
         .then(console.log)
         .catch(console.error)
         .finally(() => db.close())

@@ -1,0 +1,36 @@
+{% layout 'layout.liquid' %}
+
+{% block content %}
+<div class="container-md">
+    <form action="/player" method="POST">
+        <fieldset>
+            <legend>Create A New Team</legend>
+            <label class="form-label">Team Name:</label>
+            <input 
+                class="form-control" 
+                type="text" 
+                name="name" 
+                placeholder="enter team name"
+            >
+            <label class="form-label">Color:</label>
+            <input 
+                class="form-control" 
+                type="text" 
+                name="color" 
+                placeholder="enter color"
+            >
+            <label class="form-label">Ready to Eat?</label>
+            <input 
+                class="form-check-input" 
+                type="checkbox" 
+                name="readyToEat"
+            >
+        </fieldset>
+        <input 
+            type="submit" 
+            value="Create New Fruit" 
+            class="btn btn-success"
+        >
+    </form>
+</div>
+{% endblock %}

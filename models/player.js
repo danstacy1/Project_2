@@ -6,10 +6,10 @@ const commentSchema = require('./comment')
 const { Schema, model } = mongoose
 
 // Schema is a set of rules for my model
-const fruitSchema = new Schema({
+const playerSchema = new Schema({
     name: String,
-    color: String,
-    readyToEat: Boolean,
+    position: String,
+    team: String,
     owner: {
         type: Schema.Types.ObjectId,// a single User ._id 
         ref: 'User', //const User = model('User', userSchema) the string of 'User' is how we reference a model
@@ -24,6 +24,6 @@ const fruitSchema = new Schema({
 // The first param is the model name and the second one is the schema that we created up above.
 // Need to make a model
 
-const Fruit = model('Fruit', fruitSchema);
+const Player = model('Player', playerSchema);
 
-module.exports = Fruit
+module.exports = Player

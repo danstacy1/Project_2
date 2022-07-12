@@ -5,17 +5,19 @@ API: ESPN Fantasy Football API.
 npm install --save espn-fantasy-football-api
 
 NPM PACKAGES:
-"bcryptjs": "^2.4.3",
-"connect": "^3.7.0",
-"dotenv": "^16.0.1",
-"espn-fantasy-football-api": "^0.16.1",
-"express": "^4.18.1",
-"liquid-express-views": "^1.0.8",
-"lodash": "^4.17.21",
-"method-override": "^3.0.0",
-"mongo": "^0.1.0",
-"mongoose": "^6.4.4",
-"morgan": "^1.10.0"
+    "bcryptjs": "^2.4.3",
+    "connect": "^3.7.0",
+    "connect-mongo": "^4.6.0",
+    "dotenv": "^16.0.1",
+    "espn-fantasy-football-api": "^0.16.1",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "liquid-express-views": "^1.0.8",
+    "lodash": "^4.17.21",
+    "method-override": "^3.0.0",
+    "mongo": "^0.1.0",
+    "mongoose": "^6.4.4",
+    "morgan": "^1.10.0"
 
 User Stories
 As a user, I want to.....
