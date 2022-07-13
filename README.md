@@ -1,8 +1,8 @@
 # Project_2
 I am creating a fantasy football drafting app. 
 
-API: ESPN Fantasy Football API.
-npm install --save espn-fantasy-football-api
+API: FantasyData API
+https://api.sportsdata.io/api/nfl/fantasy/json/FantasyPlayers
 
 NPM PACKAGES:
     "bcryptjs": "^2.4.3",

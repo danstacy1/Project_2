@@ -3,7 +3,6 @@ const express = require('express')
 const router = express.Router()
 // importing fruit model to access database
 const Player = require('../models/player')
-const api = require('espn-fantasy-football-api/node');
 
 // DELETE - Delete
 router.delete('/:id', (req, res) => {
@@ -48,7 +47,8 @@ router.put('/:id', (req, res) => {
 
 
 // GET route for displaying my form for create
-router.get('/new', (req, res) => {
+router.get('/newteam', (req, res) => {
+    const api = require('espn-fantasy-football-api/node');
     res.render('draft/newteam')
 })
 
