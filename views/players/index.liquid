@@ -2,10 +2,10 @@
 
 {% block content %}
 <div>
-    <h2 class="display-6">Fantasy Football Draft App</h2>
+    <h2 class="display-6">Fantasy Draft App</h2>
     <div class="row">
 
-        {% for player in players %}
+        {% for player in draft %}
             <div class="card" style="width: 18rem">
                 <h5 class="card-header">{{player.name}}</h5>
                 <div class="card-body">
@@ -20,7 +20,7 @@
                         This {{player.name}} is {{player.team}}
                     </p>
 
-                    <a href="/players/{{player._id}}" class="btn btn-info">View {{player.name}}</a>
+                    <a href="/player/{{player._id}}" class="btn btn-info">View {{player.name}}</a>
                 </div>
             </div>
         {% endfor %}

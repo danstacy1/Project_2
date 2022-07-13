@@ -44,7 +44,7 @@ app.use(
 ////////////////////////////////////////////
 // Routes
 ////////////////////////////////////////////
-app.use('/players', playerRoutes)
+app.use('/draft', playerRoutes)
 app.use('/users', userRoutes)
 app.use('/comments', commentRoutes)
 

@@ -10,7 +10,7 @@ router.delete('/:id', (req, res) => {
 
     Player.findByIdAndRemove(playerId)
         .then(player => {
-            res.redirect('/players')
+            res.redirect('/draft')
         })
         .catch(err => {
             res.json(err)
@@ -23,7 +23,7 @@ router.get('/:id/edit', (req, res) => {
 
     Player.findById(playerId)
         .then(player => {
-            res.render('players/edit', { player })
+            res.render('draft/edit', { player })
         })
         .catch(err => {
             res.json(err)
@@ -34,11 +34,11 @@ router.get('/:id/edit', (req, res) => {
 router.put('/:id', (req, res) => {
     const playerId = req.params.id
 
-    req.body.readyToEat = req.body.readyToEat === 'on' ? true : false
+    // req.body.readyToEat = req.body.readyToEat === 'on' ? true : false
 
     Player.findByIdAndUpdate(playerId, req.body, { new: true })
         .then(player => {
-            res.redirect(`/players/${player._id}`)
+            res.redirect(`/draft/${player._id}`)
         })
         .catch(err => {
             res.json(err)
@@ -48,7 +48,7 @@ router.put('/:id', (req, res) => {
 
 // GET route for displaying my form for create
 router.get('/new', (req, res) => {
-    res.render('players/new')
+    res.render('draft/newteam')
 })
 
 // POST - Create
@@ -71,14 +71,14 @@ router.post('/', (req, res) => {
 })
 
 // GET - Index
-// localhost:3000/fruits
+// localhost:3002/draft
 router.get('/', (req, res) => {
     // use mongoose to find all fruits
     Player.find({})
     // return fruits as JSON
         .then(players => {
             // res.json(fruit)
-            res.render('players/index', { players })
+            res.render('players', { players })
         })
         .catch(err => {
             res.json(err)
@@ -89,7 +89,7 @@ router.get('/mine', (req, res) => {
     // find the fruits associated with the logged in user
     Player.find({ owner: req.session.userId })
         .then(players => {
-            res.render('players/index', { players })
+            res.render('draft/index', { players })
         })
         .catch(error => {
             console.log(error)
