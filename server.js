@@ -9,6 +9,7 @@ const methodOverride = require('method-override')
 const playerRoutes = require('./controller/player_routes')
 const userRoutes = require('./controller/user_routes')
 const commentRoutes = require('./controller/comment_routes')
+const api = require('espn-fantasy-football-api/node');
 
 ////////////////////////////////////////////
 // Create our express application object

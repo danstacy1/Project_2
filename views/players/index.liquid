@@ -2,13 +2,15 @@
 
 {% block content %}
 <div>
-    <h2 class="display-6">Fantasy Draft App</h2>
+    <h2 class="display-1">Fantasy Draft App</h2>
     <div class="row">
 
-        {% for player in draft %}
+        {% for player in players %}
             <div class="card" style="width: 18rem">
-                <h5 class="card-header">{{player.name}}</h5>
-                <div class="card-body">
+                <h1 class="card-name">{{data.params.fullName}}</h1>
+                <h3 class="card-info">{{data.params.defaultPosition}}</h3>
+                <div class="card-info">{{data.params.proTeam}}
+                
                     <h6 class="card-title">
                         {% if player.team %}
                             Ripe
@@ -24,6 +26,12 @@
                 </div>
             </div>
         {% endfor %}
+        <input 
+            type="submit" 
+            value="Draft Now" 
+            class="btn btn-success"
+        >
+        <img src = 'FDA-Logo.jpeg' alt="FDA pic">
     </div>
 </div>
 

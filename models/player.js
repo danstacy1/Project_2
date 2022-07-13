@@ -1,6 +1,10 @@
 // using an already connected mongoose, not a fresh one from node_modules.
 const mongoose = require('./connection')
 const commentSchema = require('./comment')
+const api = require('espn-fantasy-football-api/node');
+
+// const players = data.player.id
+// console.log('players', data.player.id)
 
 // inside of Mongoose I want the keys that are named Schema and model. (destructuring syntax)
 const { Schema, model } = mongoose

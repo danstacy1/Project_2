@@ -3,6 +3,7 @@ const express = require('express')
 const router = express.Router()
 // importing fruit model to access database
 const Player = require('../models/player')
+const api = require('espn-fantasy-football-api/node');
 
 // DELETE - Delete
 router.delete('/:id', (req, res) => {

@@ -1,9 +1,10 @@
 body {
-    background-color: lightsteelblue;
+    background-color: palegreen;
 }
 .card {
     margin: 5px;
 }
+
 a {
-    margin: 5px;
+    margin: 12px;
 }
