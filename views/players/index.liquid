@@ -4,28 +4,7 @@
 <div>
     <h2 class="display-1">Fantasy Draft App</h2>
     <div class="row">
-
-        {% for player in players %}
-            <div class="card" style="width: 18rem">
-                <h1 class="card-name">{{data.params.fullName}}</h1>
-                <h3 class="card-info">{{data.params.defaultPosition}}</h3>
-                <div class="card-info">{{data.params.proTeam}}
-                
-                    <h6 class="card-title">
-                        {% if player.team %}
-                            Ripe
-                        {% else %}
-                            Not Ripe
-                        {% endif %}
-                    </h6>
-                    <p class="card-text">
-                        This {{player.name}} is {{player.team}}
-                    </p>
-
-                    <a href="/player/{{player._id}}" class="btn btn-info">View {{player.name}}</a>
-                </div>
-            </div>
-        {% endfor %}
+        
         <a href="/users/login" class="btn btn-success">Log In</a>
         <h9>Don't have an account? Create an one<a href="/users/signup">here.</a></h9>
     </div>

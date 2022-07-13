@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container-md">
-    <form action="/players/{{fruit._id}}?_method=PUT" method="POST">
+    <form action="/myteam/{{fruit._id}}?_method=PUT" method="POST">
         <fieldset>
             <legend>Edit This {{player.name}}</legend>
             <label class="form-label">Name:</label>
@@ -33,7 +33,7 @@
         </fieldset>
         <div class="btn-group">
             <input type="submit" value="Edit {{ player.name }}" class="btn btn-success">
-            <a href="/players" class="btn btn-warning">Nevermind</a>
+            <a href="/teams" class="btn btn-warning">Nevermind</a>
         </div>
     </form>
 </div>

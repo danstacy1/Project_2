@@ -2,15 +2,15 @@ const express = require('express')
 // making a router
 const router = express.Router()
 // importing fruit model to access database
-const Player = require('../models/player')
+const Team = require('../models/team')
 
 
 // DELETE - Delete
 router.delete('/:id', (req, res) => {
-    const playerId = req.params.id
+    const teamId = req.params.id
 
-    Player.findByIdAndRemove(playerId)
-        .then(player => {
+    Team.findByIdAndRemove(teamId)
+        .then(team => {
             res.redirect('/draft')
         })
         .catch(err => {
@@ -20,11 +20,11 @@ router.delete('/:id', (req, res) => {
 
 // GET route for displaying an update form
 router.get('/:id/edit', (req, res) => {
-    const playerId = req.params.id
+    const teamId = req.params.id
 
-    Player.findById(playerId)
-        .then(player => {
-            res.render('draft/edit', { player })
+    Team.findById(teamId)
+        .then(team => {
+            res.render('draft/edit', { team })
         })
         .catch(err => {
             res.json(err)
@@ -33,13 +33,13 @@ router.get('/:id/edit', (req, res) => {
 
 // PUT - Update
 router.put('/:id', (req, res) => {
-    const playerId = req.params.id
+    const teamId = req.params.id
 
     // req.body.readyToEat = req.body.readyToEat === 'on' ? true : false
 
-    Player.findByIdAndUpdate(playerId, req.body, { new: true })
-        .then(player => {
-            res.redirect(`/draft/${player._id}`)
+    Team.findByIdAndUpdate(teamId, req.body, { new: true })
+        .then(team => {
+            res.redirect(`/draft/${team._id}`)
         })
         .catch(err => {
             res.json(err)
@@ -49,7 +49,7 @@ router.put('/:id', (req, res) => {
 
 // GET route for displaying my form for create
 router.get('/new', (req, res) => {
-    res.render('draft/new')
+    res.render('players/new')
 })
 
 // POST - Create
@@ -61,10 +61,10 @@ router.post('/', (req, res) => {
     // using the ._id to set the owner field
     req.body.owner = req.session.userId
 
-    Player.create(req.body)
-        .then(players => {
-            // console.log(fruit)
-            res.redirect('/players')
+    Team.create(req.body)
+        .then(team => {
+            console.log('this is the created team', team)
+            res.redirect(`/draft/${team.id}`)
         })
         .catch(err => {
             res.json(err)
@@ -75,11 +75,11 @@ router.post('/', (req, res) => {
 // localhost:3002/draft
 router.get('/', (req, res) => {
     // use mongoose to find all fruits
-    Player.find({})
+    Team.find({})
     // return fruits as JSON
-        .then(players => {
+        .then(teams => {
             // res.json(fruit)
-            res.render('players', { players })
+            res.render('players', { teams })
         })
         .catch(err => {
             res.json(err)
@@ -88,9 +88,9 @@ router.get('/', (req, res) => {
 
 router.get('/mine', (req, res) => {
     // find the fruits associated with the logged in user
-    Player.find({ owner: req.session.userId })
-        .then(players => {
-            res.render('draft/index', { players })
+    Team.find({ owner: req.session.userId })
+        .then(team => {
+            res.render('draft/index', { teams })
         })
         .catch(error => {
             console.log(error)
@@ -106,10 +106,10 @@ router.get('/seed', (req,res) => {
     
 
     // delete if we have fruits
- Player.deleteMany({})
+ Team.deleteMany({})
     // insert data
     .then(() => {
-        Player.create(startPlayers)
+        Team.create(startTeams)
         // return this daata as JSON to view
         .then(data => {
             res.json(data)
@@ -123,20 +123,20 @@ router.get('/seed', (req,res) => {
 // GET - Show
 // localhost:3000/fruits/:id <- change with the id being passed in
 router.get('/:id', (req, res) => {
-    const playerId = req.params.id
+    const teamId = req.params.id
 
-    Player.findById(playerId)
+    Team.findById(teamId)
         // This will populate our User model fields
         // comment has an author field and that is the ref to the User model
         // always going to be a string of the value you want to populate
         // this also has to be another model
         .populate('comments.author')
         // send back some json
-        .then(player => {
+        .then(team => {
             // res.json(fruit)show route.
             const userId = req.session.userId
             const username = req.session.username
-            res.render('players/show', { player, userId, username })
+            res.render('teams/show', { team, userId, username })
         })
         .catch(err => {
             res.json(err)

@@ -6,15 +6,19 @@ const commentSchema = require('./comment')
 const { Schema, model } = mongoose
 
 // Schema is a set of rules for my model
-const playerSchema = new Schema({
+const teamSchema = new Schema({
     name: String,
-    position: String,
-    team: String,
     owner: {
         type: Schema.Types.ObjectId,// a single User ._id 
         ref: 'User', //const User = model('User', userSchema) the string of 'User' is how we reference a model
     },
     comments: [commentSchema] // this is saying that a fruit can have many comments, because it is an array. Comments are a sub doc of fruit.
+    players: [
+        {
+            type: Schema.Types.ObjectId,// a single User ._id 
+        ref: 'Player', 
+        }
+    ]
 }, {
     // This collects a timestamp for everytime you add something to the database.
     timestamps: true,
@@ -24,6 +28,6 @@ const playerSchema = new Schema({
 // The first param is the model name and the second one is the schema that we created up above.
 // Need to make a model
 
-const Player = model('Player', playerSchema);
+const Team = model('Team', teamSchema);
 
-module.exports = Player
+module.exports = Team
