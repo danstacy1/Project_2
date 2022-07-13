@@ -4,6 +4,7 @@ const router = express.Router()
 // importing fruit model to access database
 const Player = require('../models/player')
 
+
 // DELETE - Delete
 router.delete('/:id', (req, res) => {
     const playerId = req.params.id
@@ -47,9 +48,8 @@ router.put('/:id', (req, res) => {
 
 
 // GET route for displaying my form for create
-router.get('/newteam', (req, res) => {
-    const api = require('espn-fantasy-football-api/node');
-    res.render('draft/newteam')
+router.get('/new', (req, res) => {
+    res.render('draft/new')
 })
 
 // POST - Create
