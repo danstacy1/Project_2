@@ -49,7 +49,7 @@ router.put('/:id', (req, res) => {
 
 // GET route for displaying my form for create
 router.get('/new', (req, res) => {
-    res.render('players/new')
+    res.render('draft/newteam')
 })
 
 // POST - Create
@@ -71,7 +71,7 @@ router.post('/', (req, res) => {
         })
 })
 
-// GET - Index
+// GET - Signin
 // localhost:3002/draft
 router.get('/', (req, res) => {
     // use mongoose to find all fruits
@@ -79,18 +79,20 @@ router.get('/', (req, res) => {
     // return fruits as JSON
         .then(teams => {
             // res.json(fruit)
-            res.render('players', { teams })
+            res.render('draft/signin', { teams })
         })
         .catch(err => {
             res.json(err)
         })
 })
 
-router.get('/mine', (req, res) => {
+
+
+router.get('/myteam', (req, res) => {
     // find the fruits associated with the logged in user
     Team.find({ owner: req.session.userId })
         .then(team => {
-            res.render('draft/index', { teams })
+            res.render('draft/myteam', { teams })
         })
         .catch(error => {
             console.log(error)
