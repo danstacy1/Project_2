@@ -115,24 +115,24 @@ router.get('/myteam', (req, res) => {
 // seed route
 // insert many items into our database with just going to this route.
 // localhost:3000/fruits/seed/
-router.get('/seed', (req,res) => {
-    // starting data
+// router.get('/seed', (req,res) => {
+//     // starting data
     
 
-    // delete if we have fruits
- Team.deleteMany({})
-    // insert data
-    .then(() => {
-        Tea.create(startplayerPool)
-        // return this daata as JSON to view
-        .then(data => {
-            res.json(data)
-        })
-        // This does the came thing '.catch(err => console.error(err))'
-        .catch(console.error)
-    })
+//     // delete if we have fruits
+//  Team.deleteMany({})
+//     // insert data
+//     .then(() => {
+//         Tea.create(startplayerPool)
+//         // return this daata as JSON to view
+//         .then(data => {
+//             res.json(data)
+//         })
+//         // This does the came thing '.catch(err => console.error(err))'
+//         .catch(console.error)
+//     })
    
-})
+// })
 
 // GET - Show
 // localhost:3000/fruits/:id <- change with the id being passed in

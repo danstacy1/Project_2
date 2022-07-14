@@ -4,11 +4,12 @@
 <div>
     <h2 class="display-1">Fantasy Draft App</h2>
         <div class="row">
+            
             {% for player in playerPool %}
             <ol class="list-group list-group-numbered">
-                <li class="list-group-item">PlayerName: {{playerPool.Name}}</li>
-                <li class="list-group-item">PlayerName: {{playerPool.Name}}</li>
-                <li class="list-group-item">PlayerName: {{playerPool.Name}}</li>
+                <li class="list-group-item">PlayerName: {{player.name}}</li>
+                <li class="list-group-item">PlayerName: {{player.name}}</li>
+                <li class="list-group-item">PlayerName: {{player.name}}</li>
             </ol>
             {% endfor %}    
         </div>
