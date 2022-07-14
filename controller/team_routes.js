@@ -48,15 +48,13 @@ router.put('/:id', (req, res) => {
 
 
 // GET route for displaying my form for create
-router.get('/new', (req, res) => {
+router.get('/newteam', (req, res) => {
     res.render('draft/newteam')
 })
 
 // POST - Create
 router.post('/', (req, res) => {
-    req.body.readyToEat = req.body.readyToEat === 'on' ? true : false
-
-    // now that we have user specific routes, we will add a username upon creation. 
+    // now that we have user specific routes, we will add a new team upon creation. 
     // remember, when we logged in, we saved the username to the session object.
     // using the ._id to set the owner field
     req.body.owner = req.session.userId
@@ -64,7 +62,7 @@ router.post('/', (req, res) => {
     Team.create(req.body)
         .then(team => {
             console.log('this is the created team', team)
-            res.redirect(`/draft/${team.id}`)
+            res.redirect(`/draft/draft`)
         })
         .catch(err => {
             res.json(err)
