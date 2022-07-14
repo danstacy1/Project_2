@@ -3,6 +3,7 @@ const express = require('express')
 const router = express.Router()
 // importing fruit model to access database
 const Team = require('../models/team')
+const Player = require('../models/player')
 
 
 // DELETE - Delete
@@ -77,7 +78,7 @@ router.get('/', (req, res) => {
     // return fruits as JSON
         .then(teams => {
             // res.json(fruit)
-            res.render('draft/signin', { teams })
+            res.render('draft/welcome', { teams })
         })
         .catch(err => {
             res.json(err)
@@ -87,11 +88,17 @@ router.get('/', (req, res) => {
 // GET - Draft Page
 // localhost:3002/draft/draft
 router.get('/draft/', (req, res) => {
-    console.log('this is the seed data', )
-    // use mongoose to find all fruits
-    Team.find({})
-    // return fruits as JSON
+    // use mongoose to find all players
+    // Team.find({})
+    //     .then(teams => {
+    //         console.log('this is the team data', teams)
+    //         // res.json(fruit)
+    //         res.render('draft/draft', { teams })
+    //     })
+    Player.find({})
+    // return players as JSON
         .then(players => {
+            console.log('this is the player data', players)
             // res.json(fruit)
             res.render('draft/draft', { players })
         })

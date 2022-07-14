@@ -4,12 +4,9 @@
 <div>
     <h2 class="display-1">Fantasy Draft App</h2>
         <div class="row">
-            <h1>{{player.Name}}</h1>
-
-            
             {% for player in players %}
                 <ol class="list-group list-group-numbered">
-                    <li class="list-group-item">PlayerName: {{player.Name}}</li>
+                    <li class="list-group-item"> {{player.name}} | {{player.position}} | {{player.team}} | ADP: {{player.averageDraftPositionPPR}} | Bye: Week  {{player.byeWeek}}</li>
                 </ol>
             {% endfor %}    
         </div>

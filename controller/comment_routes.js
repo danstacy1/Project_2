@@ -6,6 +6,7 @@ const express = require('express')
 const router = express.Router()
 // importing fruit model to access database
 const Team = require('../models/team')
+const Player = require('../models/player')
 
 // POST - Creation
 // localhost:3001/comments/:fruitId <- A single fruit can have many comments.

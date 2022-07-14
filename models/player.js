@@ -7,11 +7,11 @@ const { Schema, model } = mongoose
 
 // Schema is a set of rules for my model
 const playerSchema = new Schema({
-    Name: String,
-    Position: String,
-    Team: String,
-    AverageDraftPositionPPR: Number,
-    ByeWeek: Number,
+    name: String,
+    position: String,
+    team: String,
+    averageDraftPositionPPR: Number,
+    byeWeek: Number,
     owner: {
         type: Schema.Types.ObjectId,// a single User ._id 
         ref: 'User', //const User = model('User', userSchema) the string of 'User' is how we reference a model
