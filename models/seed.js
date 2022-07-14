@@ -6,7 +6,7 @@
 // Import Dependencies
 ///////////////////////////////////////
 const mongoose = require('./connection')
-const Draft = require('./draft')
+const Draft = require('/draft')
 
 ///////////////////////////////////////
 // Seed Code
@@ -13011,13 +13011,13 @@ const playerPool = [
     ]
 
        // when we seed data, we usually clear out the db first
-       Draft.remove({})
+       Player.remove({})
        // then we create that data
-           .then(deletedDraft => {
-               console.log('this is what remove returns', deletedDraft)
+           .then(deletedPlayer => {
+               console.log('this is what remove returns', deletedPlayer)
    
                // now that our delete was successful, we can create our fruits
-               Draft.create(playerPool)
+               Player.create(playerPool)
                    .then(data => {
                        console.log('the new playerPool', data)
                        db.close()

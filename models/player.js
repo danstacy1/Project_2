@@ -7,9 +7,9 @@ const { Schema, model } = mongoose
 
 // Schema is a set of rules for my model
 const playerSchema = new Schema({
-    name: String,
-    position: String,
-    team: String,
+    Name: String,
+    Position: String,
+    Team: String,
     ByeWeek: Number,
     AverageDraftPositionPPR: Number,
     owner: {

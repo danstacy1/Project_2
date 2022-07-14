@@ -3,15 +3,20 @@
 {% block content %}
 <div>
     <h2 class="display-1">Fantasy Draft App</h2>
-    <div class="row">
-        <ol class="list-group list-group-numbered">
-            {% for each player in playerPool %}
-                <li class="list-group-item">A list item</li>
-                <li class="list-group-item">A list item</li>
-                <li class="list-group-item">A list item</li>
+        <div class="row">
+            {% for player in playerPool %}
+            <ol class="list-group list-group-numbered">
+                <li class="list-group-item">PlayerName: {{playerPool.Name}}</li>
+                <li class="list-group-item">PlayerName: {{playerPool.Name}}</li>
+                <li class="list-group-item">PlayerName: {{playerPool.Name}}</li>
+                <li class="list-group-item">PlayerName: {{playerPool.Name}}</li>
+                <li class="list-group-item">PlayerName: {{playerPool.Name}}</li>
+                <li class="list-group-item">PlayerName: {{playerPool.Name}}</li>
+                <li class="list-group-item">PlayerName: {{playerPool.Name}}</li>
+                <li class="list-group-item">PlayerName: {{playerPool.Name}}</li>
+            </ol>
             {% endfor %}    
-          </ol>
-    </div>
+        </div>
 </div>
 
 {% endblock %}

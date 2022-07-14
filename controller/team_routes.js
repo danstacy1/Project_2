@@ -60,8 +60,8 @@ router.post('/', (req, res) => {
     req.body.owner = req.session.userId
 
     Team.create(req.body)
-        .then(team => {
-            console.log('this is the created team', team)
+        .then(teams => {
+            console.log('this is the created team', teams)
             res.redirect(`/draft/draft`)
         })
         .catch(err => {
@@ -120,10 +120,10 @@ router.get('/seed', (req,res) => {
     
 
     // delete if we have fruits
- Team.deleteMany({})
+ Player.deleteMany({})
     // insert data
     .then(() => {
-        Team.create(startTeams)
+        Player.create(startplayerPool)
         // return this daata as JSON to view
         .then(data => {
             res.json(data)
@@ -150,7 +150,7 @@ router.get('/:id', (req, res) => {
             // res.json(fruit)show route.
             const userId = req.session.userId
             const username = req.session.username
-            res.render('teams/show', { team, userId, username })
+            res.render('draft/show', { team, userId, username })
         })
         .catch(err => {
             res.json(err)
