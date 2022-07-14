@@ -16,8 +16,7 @@ const db = mongoose.connection
 
 // this runs the callback function when the db connection is opened from this file
 db.on('open', () => {
-    // array of starter fruits
-
+    // array of players by ADP
 const playerPool = [
     {
     "PlayerID": 21682,
@@ -13014,13 +13013,13 @@ const playerPool = [
        // when we seed data, we usually clear out the db first
        Draft.remove({})
        // then we create that data
-           .then(deletedFruits => {
-               console.log('this is what remove returns', deletedFruits)
+           .then(deletedDraft => {
+               console.log('this is what remove returns', deletedDraft)
    
                // now that our delete was successful, we can create our fruits
-               Fruit.create(startFruits)
+               Draft.create(playerPool)
                    .then(data => {
-                       console.log('the new fruits', data)
+                       console.log('the new playerPool', data)
                        db.close()
                    })
                    .catch(error => {

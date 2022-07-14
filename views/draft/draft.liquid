@@ -4,8 +4,13 @@
 <div>
     <h2 class="display-1">Fantasy Draft App</h2>
     <div class="row">
-        
-        <a href="/users/login" class="btn btn-success">THIS IS THE DRAFT PAGE BUILD THAT SHIT HERE!!!!!!</a>
+        <ol class="list-group list-group-numbered">
+            {% for each player in playerPool %}
+                <li class="list-group-item">A list item</li>
+                <li class="list-group-item">A list item</li>
+                <li class="list-group-item">A list item</li>
+            {% endfor %}    
+          </ol>
     </div>
 </div>
 
