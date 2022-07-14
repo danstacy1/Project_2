@@ -120,10 +120,10 @@ router.get('/seed', (req,res) => {
     
 
     // delete if we have fruits
- Player.deleteMany({})
+ Team.deleteMany({})
     // insert data
     .then(() => {
-        Player.create(startplayerPool)
+        Tea.create(startplayerPool)
         // return this daata as JSON to view
         .then(data => {
             res.json(data)
