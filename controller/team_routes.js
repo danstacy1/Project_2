@@ -87,12 +87,13 @@ router.get('/', (req, res) => {
 // GET - Draft Page
 // localhost:3002/draft/draft
 router.get('/draft/', (req, res) => {
+    console.log('this is the seed data', )
     // use mongoose to find all fruits
     Team.find({})
     // return fruits as JSON
-        .then(teams => {
+        .then(players => {
             // res.json(fruit)
-            res.render('draft/draft', { teams })
+            res.render('draft/draft', { players })
         })
         .catch(err => {
             res.json(err)
