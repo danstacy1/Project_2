@@ -6,7 +6,7 @@
         <div class="row">
             {% for player in players %}
                 <ol class="list-group list-group-numbered">
-                    <li class="list-group-item"> {{player.name}} | {{player.position}} | {{player.team}} | ADP: {{player.averageDraftPositionPPR}} | Bye: Week  {{player.byeWeek}}</li>
+                    <li class="list-group-item"><a href="/draft/{{player._id}}"> Draft </a><a href="/draft/{{player._id}}"> {{player.name}} </a> | {{player.position}} | {{player.team}} | ADP: {{player.averageDraftPositionPPR}} | Bye: Week  {{player.byeWeek}}</li>
                 </ol>
             {% endfor %}    
         </div>

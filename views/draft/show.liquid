@@ -1,31 +1,20 @@
 {% layout 'layout.liquid' %}
 {% block content %}
     <div class="conatiner-md">
-        <article>
-
-            <h2>{{player.name}}</h2>
-            <h3>
-                {% if player.readyToEat %}
-                    Ripe and ready to eat
-                {% else %}
-                    Not ripe, wait to eat it
-                {% endif %}
-            </h3>
-            <h4>Color: {{player.team}}</h4>
+        <article></article>
+            <h1>{{player.name}}</h1>
+            <h4>{{player.position}}</h4>
+            <h4>{{player.team}}</h4>
+            <h4>ADP: {{player.averageDraftPositionPPR}}</h4>
+            <h4>Bye Week: {{player.byeWeek}}</h4>
             <div class="btn-group">
-
-                <a href="/draft/{{player._id}}/edit" class="btn btn-primary">Edit Team</a>
-                <form action="/myteam/{{player._id}}?_method=DELETE" method="POST">
-                    <input type="submit" value="Delete" class="btn btn-danger">
-                </form>
-            </div>
         </article>
-        <div class="col-md-6">
+        <div class="col-md-15">
             <form action="/comments/{{player._id}}" method="POST">
                 <fieldset>
-                    <legend>Add Player Note</legend>
+                    <!-- <legend>Add Player Note</legend> -->
                     <label class="form-label">Comment:</label>
-                    <input type="text" class="form-control" name="note" placeholder="Enter comment here" />
+                    <input type="text" class="form-control" name="note" placeholder="Enter player note here" />
                 </fieldset>
                 <input type="submit" class="btn btn-success" value="Add comment" />
             </form>

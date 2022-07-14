@@ -98,7 +98,7 @@ router.get('/draft/', (req, res) => {
     Player.find({})
     // return players as JSON
         .then(players => {
-            console.log('this is the player data', players)
+            // console.log('this is the player data', players)
             // res.json(fruit)
             res.render('draft/draft', { players })
         })
@@ -145,20 +145,20 @@ router.get('/myteam', (req, res) => {
 // GET - Show
 // localhost:3000/fruits/:id <- change with the id being passed in
 router.get('/:id', (req, res) => {
-    const teamId = req.params.id
+    const playerId = req.params.id
 
-    Team.findById(teamId)
+    Player.findById(playerId)
         // This will populate our User model fields
         // comment has an author field and that is the ref to the User model
         // always going to be a string of the value you want to populate
         // this also has to be another model
         .populate('comments.author')
         // send back some json
-        .then(team => {
+        .then(player => {
             // res.json(fruit)show route.
             const userId = req.session.userId
             const username = req.session.username
-            res.render('draft/show', { team, userId, username })
+            res.render('draft/show', { player, userId, username })
         })
         .catch(err => {
             res.json(err)
