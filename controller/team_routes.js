@@ -84,6 +84,20 @@ router.get('/', (req, res) => {
         })
 })
 
+// GET - Draft Page
+// localhost:3002/draft/draft
+router.get('/draft/', (req, res) => {
+    // use mongoose to find all fruits
+    Team.find({})
+    // return fruits as JSON
+        .then(teams => {
+            // res.json(fruit)
+            res.render('draft/draft', { teams })
+        })
+        .catch(err => {
+            res.json(err)
+        })
+})
 
 
 router.get('/myteam', (req, res) => {
