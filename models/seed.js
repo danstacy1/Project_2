@@ -34,19 +34,19 @@ const playerPool = [
     "AverageDraftposition2QB": 1.2
     },
     {
-    "PlayerID": 17959,
-    name: "Derrick Henry",
-    team: "TEN",
+    "PlayerID": 18877,
+    name: "Christian McCaffrey",
+    team: "CAR",
     position: "RB",
-    "AverageDraftposition": 3.4,
-    averageDraftPositionPPR: 4.1,
-    byeWeek: 6,
-    "AuctionValue": 67,
-    "AuctionValuePPR": 60,
+    "AverageDraftposition": 4.3,
+    averageDraftPositionPPR: 2.8,
+    byeWeek: 13,
+    "AuctionValue": 54,
+    "AuctionValuePPR": 57,
     "AverageDraftpositionIDP": null,
     "AverageDraftpositionRookie": null,
-    "AverageDraftpositionDynasty": 23.2,
-    "AverageDraftposition2QB": 4
+    "AverageDraftpositionDynasty": 4.8,
+    "AverageDraftposition2QB": 7
     },
     {
     "PlayerID": 19562,
@@ -64,19 +64,19 @@ const playerPool = [
     "AverageDraftposition2QB": 4.7
     },
     {
-    "PlayerID": 18877,
-    name: "Christian McCaffrey",
-    team: "CAR",
+    "PlayerID": 17959,
+    name: "Derrick Henry",
+    team: "TEN",
     position: "RB",
-    "AverageDraftposition": 4.3,
-    averageDraftPositionPPR: 2.8,
-    byeWeek: 13,
-    "AuctionValue": 54,
-    "AuctionValuePPR": 57,
+    "AverageDraftposition": 3.4,
+    averageDraftPositionPPR: 4.1,
+    byeWeek: 6,
+    "AuctionValue": 67,
+    "AuctionValuePPR": 60,
     "AverageDraftpositionIDP": null,
     "AverageDraftpositionRookie": null,
-    "AverageDraftpositionDynasty": 4.8,
-    "AverageDraftposition2QB": 7
+    "AverageDraftpositionDynasty": 23.2,
+    "AverageDraftposition2QB": 4
     },
     {
     "PlayerID": 18882,
@@ -92,6 +92,21 @@ const playerPool = [
     "AverageDraftpositionRookie": null,
     "AverageDraftpositionDynasty": null,
     "AverageDraftposition2QB": 7.8
+    },
+    {
+    "PlayerID": 21685,
+    name: "Justin Jefferson",
+    team: "MIN",
+    position: "WR",
+    "AverageDraftposition": 7.1,
+    averageDraftPositionPPR: 5.6,
+    byeWeek: 7,
+    "AuctionValue": 50,
+    "AuctionValuePPR": 51,
+    "AverageDraftpositionIDP": null,
+    "AverageDraftpositionRookie": null,
+    "AverageDraftpositionDynasty": null,
+    "AverageDraftposition2QB": 9.4
     },
     {
     "PlayerID": 21768,
@@ -122,21 +137,6 @@ const playerPool = [
     "AverageDraftpositionRookie": null,
     "AverageDraftpositionDynasty": 15.6,
     "AverageDraftposition2QB": 9.6
-    },
-    {
-    "PlayerID": 21685,
-    name: "Justin Jefferson",
-    team: "MIN",
-    position: "WR",
-    "AverageDraftposition": 7.1,
-    averageDraftPositionPPR: 5.6,
-    byeWeek: 7,
-    "AuctionValue": 50,
-    "AuctionValuePPR": 51,
-    "AverageDraftpositionIDP": null,
-    "AverageDraftpositionRookie": null,
-    "AverageDraftpositionDynasty": null,
-    "AverageDraftposition2QB": 9.4
     },
     {
     "PlayerID": 22564,

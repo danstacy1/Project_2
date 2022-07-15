@@ -16,15 +16,16 @@
                     <label class="form-label">Comment:</label>
                     <input type="text" class="form-control" name="note" placeholder="Enter player note here" />
                 </fieldset>
-                <input type="submit" class="btn btn-success" value="Add comment" />
+                <input type="submit" class="btn btn-success" value="Add comment"/>
+                <a href="/draft/draft" class="btn btn-warning">Back to Draft Board</a>
             </form>
-        </div>
-        {% if player.comments.length > 0 %}
-        <div class="container-sm justify-content-center">
-            <div class="col-md-8 col-lg-6">
-                {% for comment in player.comments %}
+            {% if player.comments.length > 0 %}
+            <div class="container-sm justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    {% for comment in player.comments %}
                     {% render '../comment.liquid' comment: comment, userId: userId, player: player, username: username %}
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
         {% endif %}
