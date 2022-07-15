@@ -120,6 +120,19 @@ router.get('/myteam', (req, res) => {
         })
 })
 
+router.get('/playerrankings/', (req, res) => {
+    Player.find({})
+    // return players as JSON
+        .then(players => {
+            // console.log('this is the player data', players)
+            // res.json(fruit)
+            res.render('draft/playerrankings', { players })
+        })
+        .catch(err => {
+            res.json(err)
+        })
+})
+
 // seed route
 // insert many items into our database with just going to this route.
 // localhost:3000/fruits/seed/
