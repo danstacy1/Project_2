@@ -111,8 +111,8 @@ router.get('/draft/', (req, res) => {
 router.get('/myteam', (req, res) => {
     // find the fruits associated with the logged in user
     Team.find({ owner: req.session.userId })
-        .then(team => {
-            res.render('draft/myteam', { teams })
+        .then(players => {
+            res.render('draft/myteam', { players })
         })
         .catch(error => {
             console.log(error)

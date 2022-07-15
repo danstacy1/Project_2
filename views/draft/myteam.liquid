@@ -1,0 +1,16 @@
+{% layout 'layout.liquid' %}
+
+{% block content %}
+<div>
+    <h2 class="display-1">Fantasy Draft App</h2>
+        <div class="row">
+            <h6>QB RB WR TE FLEX DST K</h6>
+            {% for player in players %}
+                <ul class="list-group list-group">
+                    <li class="list-group-item"><a href="/draft/{{player._id}}"> {{player.name}} / {{player.position}} / {{player.team}}</a> | ADP: {{player.averageDraftPositionPPR}} | Bye: Week  {{player.byeWeek}}</li>
+                </ul>
+            {% endfor %}    
+        </div>
+</div>
+
+{% endblock %}
