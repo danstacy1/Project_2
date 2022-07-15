@@ -13,17 +13,17 @@
                             <form class="col-1" action="/draft/myteam" method="POST">
                                 
                                 <input type="hidden" value= {{player._id}}>
-                                <button type="submit">Draft</button>
+                                <button type="submit" class="button" >Draft</button>
                             </form>
                             
                             
                             <a class="col" href="/draft/{{player._id}}"> {{player.name}} / {{player.position}} / {{player.team}}</a>
                             <div class="col-3">
-                                 Bye: Week  {{player.byeWeek}}
-                            </div> 
-                            <div class="col-3">
                                 ADP: {{player.averageDraftPositionPPR}}
                            </div> 
+                            <div class="col-3">
+                                 Bye: Week  {{player.byeWeek}}
+                            </div> 
                         </div>
                     </li>
                 </ul>

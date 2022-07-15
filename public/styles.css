@@ -8,3 +8,7 @@ body {
 a {
     margin: 12px;
 }
+
+.button {
+    background-color: palegoldenrod;
+}
