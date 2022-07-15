@@ -19,7 +19,10 @@
             class="btn btn-success"
         >
         <h3>My Teams</h3>
-        <h4></h4>
+        {% for name in teams %}
+        <h4>{{req.session.teamId}}</h4>
+        console.log('heres your info' req.session)
+        {% endfor %}
     </form>
 </div>
 {% endblock %}
