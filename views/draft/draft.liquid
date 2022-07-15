@@ -7,7 +7,25 @@
             <h6>QB RB WR TE FLEX DST K</h6>
             {% for player in players %}
                 <ul class="list-group list-group">
-                    <li class="list-group-item"><a href="/draft/{{player._id}}"> Draft </a><a href="/draft/{{player._id}}"> {{player.name}} / {{player.position}} / {{player.team}}</a> | ADP: {{player.averageDraftPositionPPR}} | Bye: Week  {{player.byeWeek}}</li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            
+                            <form class="col-1" action="/draft/myteam" method="POST">
+                                
+                                <input type="hidden" value= {{player._id}}>
+                                <button type="submit">Draft</button>
+                            </form>
+                            
+                            
+                            <a class="col" href="/draft/{{player._id}}"> {{player.name}} / {{player.position}} / {{player.team}}</a>
+                            <div class="col-3">
+                                 Bye: Week  {{player.byeWeek}}
+                            </div> 
+                            <div class="col-3">
+                                ADP: {{player.averageDraftPositionPPR}}
+                           </div> 
+                        </div>
+                    </li>
                 </ul>
             {% endfor %}    
         </div>

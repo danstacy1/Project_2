@@ -12,14 +12,14 @@ const teamSchema = new Schema({
         type: Schema.Types.ObjectId,// a single User ._id 
         ref: 'User', //const User = model('User', userSchema) the string of 'User' is how we reference a model
     },
-    comments: [commentSchema] // this is saying that a each team can have many comments, because it is an array. Comments are a sub doc of fruit.
+    comments: [commentSchema], // this is saying that a each team can have many comments, because it is an array. Comments are a sub doc of fruit.
 
-    // players: [
-    //     {
-    //         type: Schema.Types.ObjectId,// a single User ._id 
-    //         ref: 'Player', 
-    //     }
-    // ]
+    players: [
+        {
+            type: Schema.Types.ObjectId,// a single User ._id 
+            ref: 'Player', 
+        }
+    ]
 }, {
     // This collects a timestamp for everytime you add something to the database.
     timestamps: true,

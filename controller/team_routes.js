@@ -85,7 +85,7 @@ router.get('/', (req, res) => {
         })
 })
 
-// GET - Draft Page
+// GET - Index Page
 // localhost:3002/draft/draft
 router.get('/draft/', (req, res) => {
     // use mongoose to find all players
@@ -97,6 +97,8 @@ router.get('/draft/', (req, res) => {
     //     })
     Player.find({})
     // return players as JSON
+    // if statement boolian goes here?
+    // {% if player.drafted === false %}
         .then(players => {
             // console.log('this is the player data', players)
             // res.json(fruit)
@@ -107,12 +109,37 @@ router.get('/draft/', (req, res) => {
         })
 })
 
+// draft a player to a team
+// find a team, push the players id into that team.playersarray, change the drafted boolian, redirect the same page 
+// get player id from the draft button, 
+// this controller will need to do team.find (Team.find({ owner: req.session.userId })) console.log; save the team as an array
+// team.players.push(req.params.playerId)
+// after this route works, rework index with the IF statement to see if the player has been drafted or not.
+router.post('/myteam', (req, res) => {
+    console.log(req.body)
+    const playerId = req.params.playerId
+    // find the team associated with the logged in user
+    console.log('this is the user Id', req.session.userId)
+    Team.find({ owner: req.session.userId })
+    .then(team => {
+        console.log(team)
+        team.players.push(req.params.playerId)
+            return team.save()
+        })
+        .then(team => {
+            console.log(team)
+        })
+        .catch(error => {
+            console.log(error)
+            res.json({ error })
+        })
+})
 
 router.get('/myteam', (req, res) => {
     // find the fruits associated with the logged in user
     Team.find({ owner: req.session.userId })
-        .then(players => {
-            res.render('draft/myteam', { players })
+        .then(teams => {
+            res.render('draft/myteam', { teams })
         })
         .catch(error => {
             console.log(error)
