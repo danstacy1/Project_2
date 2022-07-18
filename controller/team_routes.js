@@ -4,6 +4,7 @@ const router = express.Router()
 // importing fruit model to access database
 const Team = require('../models/team')
 const Player = require('../models/player')
+const User = require('../models/user')
 
 
 // DELETE - Delete
@@ -22,7 +23,6 @@ router.delete('/:id', (req, res) => {
 // GET route for displaying an update form
 router.get('/:id/edit', (req, res) => {
     const teamId = req.params.id
-
     Team.findById(teamId)
         .then(team => {
             res.render('draft/edit', { team })
@@ -35,9 +35,6 @@ router.get('/:id/edit', (req, res) => {
 // PUT - Update
 router.put('/:id', (req, res) => {
     const teamId = req.params.id
-
-    // req.body.readyToEat = req.body.readyToEat === 'on' ? true : false
-
     Team.findByIdAndUpdate(teamId, req.body, { new: true })
         .then(team => {
             res.redirect(`/draft/${team._id}`)
@@ -50,13 +47,11 @@ router.put('/:id', (req, res) => {
 
 // GET route for displaying my form for create
 router.get('/newteam', (req, res) => {
-    // Team.find({ owner: req.session.userId })
     Team.find({})
-        .populate('owner')
         .then(teams => {
-            console.log('THIS IS THE LIST OF TEAMS')
+            // console.log('THIS IS THE LIST OF TEAMS')
             console.log(teams)
-            console.log('///////////////////')
+            // console.log('///////////////////')
             res.render('draft/newteam', {teams})
         })
         .catch(error => {
@@ -71,7 +66,6 @@ router.post('/', (req, res) => {
     // remember, when we logged in, we saved the username to the session object.
     // using the ._id to set the owner field
     req.body.owner = req.session.userId
-
     Team.create(req.body)
         .then(teams => {
             console.log('this is the created team', teams)
@@ -113,13 +107,30 @@ router.get('/draft/', (req, res) => {
     // {% if player.drafted === false %}
         .then(players => {
             // console.log('this is the player data', players)
-            // res.json(fruit)
             res.render('draft/draft', { players })
         })
         .catch(err => {
             res.json(err)
         })
 })
+
+// router.post('/draft', (req, res) => {
+//     console.log(req.body)
+//     const playerId = req.params.playerId
+//     // find the team associated with the logged in user
+//     console.log('this is the user Id', req.session.userId)
+//     Player.find({})
+//         .then(players => {
+//             // console.log('THIS IS THE LIST OF PLAYERS')
+//             // console.log(players)
+//             // console.log('///////////////////')
+//             res.render('draft/draft', {players})
+//         })
+//         .catch(error => {
+//             console.log(error)
+//             res.json({ error })
+//         })
+// })
 
 // draft a player to a team
 // find a team, push the players id into that team.playersarray, change the drafted boolian, redirect the same page 
@@ -132,14 +143,12 @@ router.post('/myteam', (req, res) => {
     const playerId = req.params.playerId
     // find the team associated with the logged in user
     console.log('this is the user Id', req.session.userId)
-    Team.find({ owner: req.session.userId })
-    .then(team => {
-        console.log(team)
-        team.players.push(req.params.playerId)
-            return team.save()
-        })
-        .then(team => {
-            console.log(team)
+    Team.find({owner: req.session.userId})
+        .then(players => {
+            // console.log('THIS IS THE LIST OF PLAYERS')
+            // console.log(players)
+            // console.log('///////////////////')
+            res.render('draft/myteam', {players})
         })
         .catch(error => {
             console.log(error)
@@ -148,10 +157,13 @@ router.post('/myteam', (req, res) => {
 })
 
 router.get('/myteam', (req, res) => {
-    // find the fruits associated with the logged in user
-    Team.find({ owner: req.session.userId })
-        .then(teams => {
-            res.render('draft/myteam', { teams })
+    // find the player associated with the logged in team
+    Player.find({})
+        .then(players => {
+            console.log('THIS IS THE LIST OF PLAYERS')
+            console.log(players)
+            console.log('///////////////////')
+            res.render('draft/myteam', { players })
         })
         .catch(error => {
             console.log(error)

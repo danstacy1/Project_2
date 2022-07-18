@@ -5,14 +5,18 @@
     <h2 class="display-1">Fantasy Draft App</h2>
         <div class="row">
             <h6>QB RB WR TE FLEX DST K</h6>
-            
+           
             {% for team in teams %}
                 <h3>{{team.name}}</h3>
             {% endfor %}
+            
+            {% for team in teams %}
+            <h5><a href="/draft/myteam"> {{team.name}}</h5>
+            {% endfor %}
 
-            {% for player in teams[0].players %}
+            {% for player in players %}
                 <ul class="list-group list-group">
-                    <li class="list-group-item"><a href="/draft/{{player._id}}"> {{team.player.name}} / {{team.player.position}} / {{team.player.team}}</a> | ADP: {{team.player.averageDraftPositionPPR}} | Bye: Week  {{team.player.byeWeek}}</li>
+                    <li class="list-group-item"><a href="/draft/{{player._id}}"> {{player.name}} / {{player.position}} / {{player.team}}</a> | ADP: {{player.averageDraftPositionPPR}} | Bye: Week  {{player.byeWeek}}</li>
                 </ul>
             {% endfor %}    
         </div>
