@@ -23,7 +23,7 @@
             <div class="container-sm justify-content-center">
                 <div class="col-md-8 col-lg-6">
                     {% for comment in player.comments %}
-                    {% render '../comment.liquid' comment: comment, userId: userId, player: player, username: username %}
+                    {% render '../comment.liquid' comment: comment, userId: userId, player: player, username: username timestamp: timestamp %}
                     {% endfor %}
                 </div>
             </div>

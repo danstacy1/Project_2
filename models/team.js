@@ -10,7 +10,9 @@ const teamSchema = new Schema({
     name: String,
     owner: {
         type: Schema.Types.ObjectId,// a single User ._id 
-        ref: 'User', //const User = model('User', userSchema) the string of 'User' is how we reference a model
+        ref: 'User',
+        unique: true 
+        //const User = model('User', userSchema) the string of 'User' is how we reference a model
     },
     comments: [commentSchema], // this is saying that a each team can have many comments, because it is an array. Comments are a sub doc of fruit.
 

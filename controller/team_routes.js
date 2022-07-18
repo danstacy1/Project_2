@@ -50,7 +50,19 @@ router.put('/:id', (req, res) => {
 
 // GET route for displaying my form for create
 router.get('/newteam', (req, res) => {
-    res.render('draft/newteam')
+    // Team.find({ owner: req.session.userId })
+    Team.find({})
+        .populate('owner')
+        .then(teams => {
+            console.log('THIS IS THE LIST OF TEAMS')
+            console.log(teams)
+            console.log('///////////////////')
+            res.render('draft/newteam', {teams})
+        })
+        .catch(error => {
+            console.log(error)
+            res.json({ error })
+        })
 })
 
 // POST - Create
