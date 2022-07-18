@@ -9,12 +9,8 @@
             {% for team in teams %}
                 <h3>{{team.name}}</h3>
             {% endfor %}
-            
-            {% for team in teams %}
-            <h5><a href="/draft/myteam"> {{team.name}}</h5>
-            {% endfor %}
 
-            {% for player in players %}
+            {% for player in teams %}
                 <ul class="list-group list-group">
                     <li class="list-group-item"><a href="/draft/{{player._id}}"> {{player.name}} / {{player.position}} / {{player.team}}</a> | ADP: {{player.averageDraftPositionPPR}} | Bye: Week  {{player.byeWeek}}</li>
                 </ul>

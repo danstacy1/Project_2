@@ -139,7 +139,7 @@ router.get('/draft/', (req, res) => {
 // team.players.push(req.params.playerId)
 // after this route works, rework index with the IF statement to see if the player has been drafted or not.
 router.post('/myteam', (req, res) => {
-    console.log(req.body)
+    console.log(req.body) 
     const playerId = req.params.playerId
     // find the team associated with the logged in user
     console.log('this is the user Id', req.session.userId)
@@ -158,12 +158,21 @@ router.post('/myteam', (req, res) => {
 
 router.get('/myteam', (req, res) => {
     // find the player associated with the logged in team
-    Player.find({})
-        .then(players => {
-            console.log('THIS IS THE LIST OF PLAYERS')
-            console.log(players)
-            console.log('///////////////////')
-            res.render('draft/myteam', { players })
+    Team.find({ owner: req.session.userId })
+    .then(teams => {
+        res.render('draft/myteam', { teams })
+        })
+        .catch(error => {
+            console.log(error)
+            res.json({ error })
+        })
+})
+
+router.get('/myteam', (req, res) => {
+    // find the player associated with the logged in team
+    Player.find({ owner: req.session.userId })
+    .then(players => {
+        res.render('draft/myteam', { players })
         })
         .catch(error => {
             console.log(error)
