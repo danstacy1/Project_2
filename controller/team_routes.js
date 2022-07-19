@@ -104,33 +104,40 @@ router.get('/draft/', (req, res) => {
     Player.find({})
     // return players as JSON
     // if statement boolian goes here?
-    // {% if player.drafted === false %}
         .then(players => {
-            // console.log('this is the player data', players)
-            res.render('draft/draft', { players })
+                // console.log('this is the player data', players)
+                res.render('draft/draft', { players })
+            })
+            .catch(err => {
+                res.json(err)
+            })
+})
+
+// PUT Draft route
+router.put('/draft/:playerId', (req, res) => {
+    const {playerId} = req.params
+    // use mongoose to find all players
+    // Team.find({})
+    //     .then(teams => {
+    //         console.log('this is the team data', teams)
+    //         // res.json(fruit)
+    //         res.render('draft/draft', { teams })
+    //     })
+    Player.findByIdAndUpdate(playerId)
+    // return players as JSON
+    // if statement boolian goes here?
+    // {% if player.drafted === false %}
+        .then(player => {
+            console.log('this is the player data', player)
+            player.drafted = true
+            player.save()
+            res.redirect('/draft/draft')
         })
         .catch(err => {
             res.json(err)
         })
 })
 
-// router.post('/draft', (req, res) => {
-//     console.log(req.body)
-//     const playerId = req.params.playerId
-//     // find the team associated with the logged in user
-//     console.log('this is the user Id', req.session.userId)
-//     Player.find({})
-//         .then(players => {
-//             // console.log('THIS IS THE LIST OF PLAYERS')
-//             // console.log(players)
-//             // console.log('///////////////////')
-//             res.render('draft/draft', {players})
-//         })
-//         .catch(error => {
-//             console.log(error)
-//             res.json({ error })
-//         })
-// })
 
 // draft a player to a team
 // find a team, push the players id into that team.playersarray, change the drafted boolian, redirect the same page 
@@ -158,20 +165,9 @@ router.post('/myteam', (req, res) => {
 
 router.get('/myteam', (req, res) => {
     // find the player associated with the logged in team
-    Team.find({ owner: req.session.userId })
-    .then(teams => {
-        res.render('draft/myteam', { teams })
-        })
-        .catch(error => {
-            console.log(error)
-            res.json({ error })
-        })
-})
-
-router.get('/myteam', (req, res) => {
-    // find the player associated with the logged in team
-    Player.find({ owner: req.session.userId })
+    Player.find({})
     .then(players => {
+        console.log(players)
         res.render('draft/myteam', { players })
         })
         .catch(error => {

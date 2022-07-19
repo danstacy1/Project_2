@@ -10,10 +10,12 @@
                 <h3>{{team.name}}</h3>
             {% endfor %}
 
-            {% for player in teams %}
+            {% for player in players %}
+            {% if player.drafted == true %}
                 <ul class="list-group list-group">
                     <li class="list-group-item"><a href="/draft/{{player._id}}"> {{player.name}} / {{player.position}} / {{player.team}}</a> | ADP: {{player.averageDraftPositionPPR}} | Bye: Week  {{player.byeWeek}}</li>
                 </ul>
+                {% endif %}
             {% endfor %}    
         </div>
 </div>

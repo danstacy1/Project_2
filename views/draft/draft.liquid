@@ -6,11 +6,12 @@
         <div class="row">
             <h6>QB RB WR TE FLEX DST K</h6>
             {% for player in players %}
+            {% if player.drafted == false %}
                 <ul class="list-group list-group">
                     <li class="list-group-item">
                         <div class="row">
                             
-                            <form class="col-1" action="/draft/draft" method="POST">
+                            <form class="col-1" action="/draft/draft/{{player._id}}?_method=PUT" method="POST">
                                 
                                 <input type="hidden" value= {{player._id}}>
                                 <button type="submit" class="button" >Draft</button>
@@ -27,6 +28,7 @@
                         </div>
                     </li>
                 </ul>
+                {% endif %}
             {% endfor %}    
         </div>
 </div>
