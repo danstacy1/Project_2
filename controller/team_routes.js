@@ -49,14 +49,14 @@ router.get('/newteam', (req, res) => {
 
 
 // POST - Create
-router.post('/newteam', (req, res) => {
+router.post('/', (req, res) => {
     // now that we have user specific routes, we will add a new team upon creation. 
     // remember, when we logged in, we saved the username to the session object.
     // using the ._id to set the owner field
     req.body.owner = req.session.userId
     Team.create(req.body)
     .then(teams => {
-        console.log('this is the created team', teams)
+        console.log('this is the created team', {teams})
         res.redirect(`/draft/draft`)
     })
     .catch(err => {
