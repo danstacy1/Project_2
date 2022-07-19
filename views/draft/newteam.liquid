@@ -5,7 +5,7 @@
     <form action="/draft" method="POST">
         <fieldset>
             <legend>Create A New Team</legend>
-            <label class="form-label">Team Name:</label>
+            <label class="form-label"></label>
             <input 
                 class="form-control" 
                 type="text" 
@@ -23,6 +23,9 @@
     <h3>My Teams</h3>
     {% for team in teams %}
         <h5><a href="/draft/myteam"> {{team.name}}</h5>
+            <form action="/fruits/{{fruit._id}}?_method=DELETE" method="POST">
+                <input type="submit" value="Delete Team" class="btn btn-danger">
+            </form>
     {% endfor %}
 </div>
 {% endblock %}
