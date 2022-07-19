@@ -22,10 +22,10 @@
     <!-- <h3>My Teams: {{teams.length}}</h3> -->
     <h3>My Teams</h3>
     {% for team in teams %}
-        <h5><a href="/draft/myteam"> {{team.name}}</h5>
-            <form action="/fruits/{{fruit._id}}?_method=DELETE" method="POST">
+        <h5><a href="/draft/myteam"> {{team.name}}
+            <form action="/newteam/{{team._id}}?_method=DELETE" method="POST">
                 <input type="submit" value="Delete Team" class="btn btn-danger">
-            </form>
+            </form></h5>
     {% endfor %}
 </div>
 {% endblock %}

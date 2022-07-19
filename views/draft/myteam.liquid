@@ -13,7 +13,11 @@
             {% for player in players %}
             {% if player.drafted == true %}
                 <ul class="list-group list-group">
-                    <li class="list-group-item"><a href="/draft/{{player._id}}"> {{player.name}} / {{player.position}} / {{player.team}}</a> | ADP: {{player.averageDraftPositionPPR}} | Bye: Week  {{player.byeWeek}}</li>
+                    <li class="list-group-item"><a href="/draft/{{player._id}}"> {{player.name}} / {{player.position}} / {{player.team}}</a> | ADP: {{player.averageDraftPositionPPR}} | Bye: Week  {{player.byeWeek}} 
+                        <form class="col-1" action="/draft/myteam/{{player._id}}?_method=PUT" method="POST">
+                            <input type="hidden" value= {{player._id}}>
+                            <button type="submit" class="btn btn-danger" >Remove</button>
+                        </form></li>
                 </ul>
                 {% endif %}
             {% endfor %}    

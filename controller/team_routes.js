@@ -7,58 +7,46 @@ const Player = require('../models/player')
 const User = require('../models/user')
 
 
-// DELETE - Delete
-router.delete('/:id', (req, res) => {
-    const teamId = req.params.id
-
-    Team.findByIdAndRemove(teamId)
-        .then(team => {
-            res.redirect('/draft')
-        })
-        .catch(err => {
-            res.json(err)
-        })
-})
 
 // GET route for displaying an update form
 router.get('/:id/edit', (req, res) => {
     const teamId = req.params.id
     Team.findById(teamId)
-        .then(team => {
-            res.render('draft/edit', { team })
-        })
-        .catch(err => {
-            res.json(err)
-        })
+    .then(team => {
+        res.render('draft/edit', { team })
+    })
+    .catch(err => {
+        res.json(err)
+    })
 })
 
 // PUT - Update
 router.put('/:id', (req, res) => {
     const teamId = req.params.id
     Team.findByIdAndUpdate(teamId, req.body, { new: true })
-        .then(team => {
-            res.redirect(`/draft/${team._id}`)
-        })
-        .catch(err => {
-            res.json(err)
-        })
+    .then(team => {
+        res.redirect(`/draft/${team._id}`)
+    })
+    .catch(err => {
+        res.json(err)
+    })
 })
-
 
 // GET route for displaying my form for create
 router.get('/newteam', (req, res) => {
     Team.find({})
-        .then(teams => {
-            // console.log('THIS IS THE LIST OF TEAMS')
-            console.log(teams)
-            // console.log('///////////////////')
-            res.render('draft/newteam', {teams})
-        })
-        .catch(error => {
-            console.log(error)
-            res.json({ error })
-        })
+    .then(teams => {
+        // console.log('THIS IS THE LIST OF TEAMS')
+        console.log(teams)
+        // console.log('///////////////////')
+        res.render('draft/newteam', {teams})
+    })
+    .catch(error => {
+        console.log(error)
+        res.json({ error })
+    })
 })
+
 
 // POST - Create
 router.post('/', (req, res) => {
@@ -67,9 +55,22 @@ router.post('/', (req, res) => {
     // using the ._id to set the owner field
     req.body.owner = req.session.userId
     Team.create(req.body)
-        .then(teams => {
-            console.log('this is the created team', teams)
-            res.redirect(`/draft/draft`)
+    .then(teams => {
+        console.log('this is the created team', teams)
+        res.redirect(`/draft/draft`)
+    })
+    .catch(err => {
+        res.json(err)
+    })
+})
+
+// DELETE - Delete Team
+router.delete('/newteam', (req, res) => {
+    const teamId = req.params.id
+
+    Team.findByIdAndRemove(teamId)
+        .then(team => {
+            res.redirect('/newteam')
         })
         .catch(err => {
             res.json(err)
@@ -138,13 +139,24 @@ router.put('/draft/:playerId', (req, res) => {
         })
 })
 
+router.get('/myteam', (req, res) => {
+    // find the player associated with the logged in team
+    Team.find({})
+    .then (teams => {
+        console.log(teams)
+        // res.render('draft/myteam', { teams })
+    })
+    Player.find({})
+    .then(players => {
+        // console.log(players)
+        res.render('draft/myteam', { players })
+        })
+        .catch(error => {
+            console.log(error)
+            res.json({ error })
+        })
+})
 
-// draft a player to a team
-// find a team, push the players id into that team.playersarray, change the drafted boolian, redirect the same page 
-// get player id from the draft button, 
-// this controller will need to do team.find (Team.find({ owner: req.session.userId })) console.log; save the team as an array
-// team.players.push(req.params.playerId)
-// after this route works, rework index with the IF statement to see if the player has been drafted or not.
 router.post('/myteam', (req, res) => {
     console.log(req.body) 
     const playerId = req.params.playerId
@@ -152,9 +164,6 @@ router.post('/myteam', (req, res) => {
     console.log('this is the user Id', req.session.userId)
     Team.find({owner: req.session.userId})
         .then(players => {
-            // console.log('THIS IS THE LIST OF PLAYERS')
-            // console.log(players)
-            // console.log('///////////////////')
             res.render('draft/myteam', {players})
         })
         .catch(error => {
@@ -163,16 +172,28 @@ router.post('/myteam', (req, res) => {
         })
 })
 
-router.get('/myteam', (req, res) => {
-    // find the player associated with the logged in team
-    Player.find({})
-    .then(players => {
-        console.log(players)
-        res.render('draft/myteam', { players })
+// PUT MyTeam route
+router.put('/myteam/:playerId', (req, res) => {
+    const {playerId} = req.params
+    // use mongoose to find all players
+    // Team.find({})
+    //     .then(teams => {
+    //         console.log('this is the team data', teams)
+    //         // res.json(fruit)
+    //         res.render('draft/draft', { teams })
+    //     })
+    Player.findByIdAndUpdate(playerId)
+    // return players as JSON
+    // if statement boolian goes here?
+    // {% if player.drafted === false %}
+        .then(player => {
+            console.log('this is the player data', player)
+            player.drafted = false
+            player.save()
+            res.redirect('/draft/myteam')
         })
-        .catch(error => {
-            console.log(error)
-            res.json({ error })
+        .catch(err => {
+            res.json(err)
         })
 })
 
