@@ -49,7 +49,7 @@ router.get('/newteam', (req, res) => {
 
 
 // POST - Create
-router.post('/', (req, res) => {
+router.post('/newteam', (req, res) => {
     // now that we have user specific routes, we will add a new team upon creation. 
     // remember, when we logged in, we saved the username to the session object.
     // using the ._id to set the owner field
@@ -65,12 +65,12 @@ router.post('/', (req, res) => {
 })
 
 // DELETE - Delete Team
-router.delete('/newteam', (req, res) => {
+router.delete('/:id', (req, res) => {
     const teamId = req.params.id
-
+    console.log('delete route')
     Team.findByIdAndRemove(teamId)
         .then(team => {
-            res.redirect('/newteam')
+            res.redirect('/draft/newteam')
         })
         .catch(err => {
             res.json(err)
@@ -139,23 +139,14 @@ router.put('/draft/:playerId', (req, res) => {
         })
 })
 
-router.get('/myteam', (req, res) => {
+router.get('/myteam', async (req, res) => {
     // find the player associated with the logged in team
-    Team.find({})
-    .then (teams => {
-        console.log(teams)
-        // res.render('draft/myteam', { teams })
+        const teams = await Team.find({ owner: req.session.userId })
+        // all code inside this function stops until we get the response from Foo.findById
+        const players = await Player.find({})
+        // again all code stops until Bar.findById finishes
+        res.render('draft/myteam', { teams, players})
     })
-    Player.find({})
-    .then(players => {
-        // console.log(players)
-        res.render('draft/myteam', { players })
-        })
-        .catch(error => {
-            console.log(error)
-            res.json({ error })
-        })
-})
 
 router.post('/myteam', (req, res) => {
     console.log(req.body) 
@@ -209,28 +200,6 @@ router.get('/playerrankings/', (req, res) => {
             res.json(err)
         })
 })
-
-// seed route
-// insert many items into our database with just going to this route.
-// localhost:3000/fruits/seed/
-// router.get('/seed', (req,res) => {
-//     // starting data
-    
-
-//     // delete if we have fruits
-//  Team.deleteMany({})
-//     // insert data
-//     .then(() => {
-//         Tea.create(startplayerPool)
-//         // return this daata as JSON to view
-//         .then(data => {
-//             res.json(data)
-//         })
-//         // This does the came thing '.catch(err => console.error(err))'
-//         .catch(console.error)
-//     })
-   
-// })
 
 // GET - Show
 // localhost:3000/fruits/:id <- change with the id being passed in

@@ -77,7 +77,7 @@ router.post('/login', async (req, res) => {
                     req.session.username = username
                     req.session.loggedIn = true
                     req.session.userId = user._id
-                    req.session.teamId = null
+                    req.session.teamId = 
                     // redirect to the '/fruits' page
                     console.log('this is the session after login', req.session)
                     res.redirect('/draft/newteam')
