@@ -1,5 +1,6 @@
 body {
     background-color: rgb(130, 215, 19);
+    /* text-align: center; */
 }
 .card {
     margin: 5px;
@@ -11,4 +12,40 @@ a {
 
 .button {
     background-color: dodgerblue;
+}
+
+.display-1 {
+    text-align: center;
+    font-size: 96px;
+    color: dodgerblue;
+    font-family: 'Neucha', cursive;
+    background-color:rgb(222, 243, 181);
+    border-width: 10px;
+    border-color: black;
+}
+
+.list-group {}
+
+/* this controls the rows in playerpool */
+.list-group-item {
+    text-align: left;
+    margin: 1px;
+    border-radius: 6;
+    border-width: 2px;
+    border-color: black;
+    
+}
+
+.btn.btn-danger {
+    font-size: 11px;
+
+}
+
+.btn.btn-success {
+    background-color: dodgerblue;
+
+}
+
+.navbar-brand {
+    font-family: 'Neucha', cursive;
 }

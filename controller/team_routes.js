@@ -95,8 +95,8 @@ router.get('/', (req, res) => {
 // GET - Index Page
 // localhost:3002/draft/draft
 router.get('/draft/', (req, res) => {
-    Player.find({})
-        .then(players => {
+    Player.find({}).sort({averageDraftPositionPPR: 1})
+    .then(players => {
                 // console.log('this is the player data', players)
                 res.render('draft/draft', { players })
             })
@@ -113,6 +113,7 @@ router.put('/draft/:playerId', (req, res) => {
     // return players as JSON
     .then(player => {
         console.log('this is the player data', player)
+
             // const teams = Team.find({ owner: req.session.userId })
             // // const players = Team.find({ players })
             // console.log('info', teams)
@@ -131,8 +132,9 @@ router.put('/draft/:playerId', (req, res) => {
 
 router.get('/myteam', async (req, res) => {
     // find the player associated with the logged in team
-        const teams = await Team.find({ owner: req.session.userId })
-        const players = await Player.find({})
+    const teams = await Team.find({ owner: req.session.userId })
+    const players = await Player.find({})
+    Player.find({}).sort({averageDraftPositionPPR: 1})
         res.render('draft/myteam', { teams, players})
     })
 
@@ -174,7 +176,7 @@ router.put('/myteam/:playerId', (req, res) => {
 })
 
 router.get('/playerrankings/', (req, res) => {
-    Player.find({})
+    Player.find({}).sort({averageDraftPositionPPR: 1})
     // return players as JSON
         .then(players => {
             // console.log('this is the player data', players)
