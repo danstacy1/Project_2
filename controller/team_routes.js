@@ -113,11 +113,11 @@ router.put('/draft/:playerId', (req, res) => {
     // return players as JSON
     .then(player => {
         console.log('this is the player data', player)
-            const teams = Team.find({ owner: req.session.userId })
-            // const players = Team.find({ players })
-            console.log('info', teams)
-            // console.log('teams', teams)
-            teams.players.push(playerId)
+            // const teams = Team.find({ owner: req.session.userId })
+            // // const players = Team.find({ players })
+            // console.log('info', teams)
+            // // console.log('teams', teams)
+            // teams.players.push(playerId)
 
             player.drafted = true
             player.save()
