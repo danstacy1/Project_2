@@ -7,6 +7,7 @@
 ///////////////////////////////////////
 const mongoose = require('./connection')
 const Player = require('./player')
+const Team = require('./team')
 
 ///////////////////////////////////////
 // Seed Code

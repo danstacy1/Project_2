@@ -3,6 +3,7 @@
 ///////////////////////////////////////
 const express = require('express')
 const User = require('../models/user')
+// const username = req.session.username
 // bcrypt is used to hash(read: encrypt) passwords
 const bcrypt = require('bcryptjs')
 

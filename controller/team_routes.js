@@ -95,16 +95,7 @@ router.get('/', (req, res) => {
 // GET - Index Page
 // localhost:3002/draft/draft
 router.get('/draft/', (req, res) => {
-    // use mongoose to find all players
-    // Team.find({})
-    //     .then(teams => {
-    //         console.log('this is the team data', teams)
-    //         // res.json(fruit)
-    //         res.render('draft/draft', { teams })
-    //     })
     Player.find({})
-    // return players as JSON
-    // if statement boolian goes here?
         .then(players => {
                 // console.log('this is the player data', players)
                 res.render('draft/draft', { players })
@@ -117,24 +108,23 @@ router.get('/draft/', (req, res) => {
 // PUT Draft route
 router.put('/draft/:playerId', (req, res) => {
     const {playerId} = req.params
-    // use mongoose to find all players
-    // Team.find({})
-    //     .then(teams => {
-    //         console.log('this is the team data', teams)
-    //         // res.json(fruit)
-    //         res.render('draft/draft', { teams })
-    //     })
+    // console.log('playerID', playerId)
     Player.findByIdAndUpdate(playerId)
     // return players as JSON
-    // if statement boolian goes here?
-    // {% if player.drafted === false %}
-        .then(player => {
-            console.log('this is the player data', player)
+    .then(player => {
+        console.log('this is the player data', player)
+            const teams = Team.find({ owner: req.session.userId })
+            // const players = Team.find({ players })
+            console.log('info', teams)
+            // console.log('teams', teams)
+            teams.players.push(playerId)
+
             player.drafted = true
             player.save()
             res.redirect('/draft/draft')
         })
         .catch(err => {
+            console.log(err)
             res.json(err)
         })
 })
@@ -142,9 +132,7 @@ router.put('/draft/:playerId', (req, res) => {
 router.get('/myteam', async (req, res) => {
     // find the player associated with the logged in team
         const teams = await Team.find({ owner: req.session.userId })
-        // all code inside this function stops until we get the response from Foo.findById
         const players = await Player.find({})
-        // again all code stops until Bar.findById finishes
         res.render('draft/myteam', { teams, players})
     })
 
@@ -174,9 +162,6 @@ router.put('/myteam/:playerId', (req, res) => {
     //         res.render('draft/draft', { teams })
     //     })
     Player.findByIdAndUpdate(playerId)
-    // return players as JSON
-    // if statement boolian goes here?
-    // {% if player.drafted === false %}
         .then(player => {
             console.log('this is the player data', player)
             player.drafted = false
