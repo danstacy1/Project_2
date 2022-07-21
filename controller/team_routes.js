@@ -131,8 +131,9 @@ router.put('/draft/:playerId', (req, res) => {
 })
 
 router.get('/myteam', async (req, res) => {
-    // find the player associated with the logged in team
+    // Show the team name of who is logged in
     const teams = await Team.find({ owner: req.session.userId })
+    // Show the players on your team
     const players = await Player.find({})
     Player.find({}).sort({averageDraftPositionPPR: 1})
         res.render('draft/myteam', { teams, players})
