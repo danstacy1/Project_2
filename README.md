@@ -4,6 +4,13 @@ I am creating a fantasy football drafting app.
 API: FantasyData API
 https://api.sportsdata.io/api/nfl/fantasy/json/FantasyPlayers
 
+Technology Used
+We used the liquid templating language to render views on our site.
+Javascript
+Express
+Node.js
+
+
 NPM PACKAGES:
     "bcryptjs": "^2.4.3",
     "connect": "^3.7.0",
@@ -63,11 +70,37 @@ STRETCH GOALS
 
 
 Schema (model)
-- Players
+- Player
  - name: string
  - positon: string
  - team: string
  - age: number
+ - owner: {
+        type: Schema.Types.ObjectId,// a single User ._id 
+        ref: 'User',
+        unique: true
+    },
+  - comments: [commentSchema], 
+ 
+ 
+- Team
+ - name: string
+ owner: {
+        type: Schema.Types.ObjectId,// a single User ._id 
+        ref: 'User',
+        unique: true
+    },
+  - comments: [commentSchema], 
+  - players: [
+        {
+            type: Schema.Types.ObjectId,// a single User ._id 
+            ref: 'Player', 
+        }
+    ]
+}, {
+   - timestamps: true,
+}): 
+
 
 - Comments
  - note: string
